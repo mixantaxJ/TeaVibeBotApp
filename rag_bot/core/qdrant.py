@@ -1,6 +1,6 @@
 import asyncio
 from qdrant_client import QdrantClient
-from qdrant_client.http.models import Distance, VectorParams
+from qdrant_client.http.models import Distance, VectorParams, PointStruct
 from fastembed import TextEmbedding
 from typing import List, Dict, Any
 import uuid
@@ -54,11 +54,11 @@ class QdrantManager:
             self._client.upsert(
                 collection_name=self.collection_name,
                 points=[
-                    {
-                        "id": str(uuid.uuid4()),
-                        "vector": vector,
-                        "payload": payload
-                    }
+                    PointStruct(
+                        id=str(uuid.uuid4()),
+                        vector=vector,
+                        payload=payload
+                    )
                 ]
             )
         await asyncio.to_thread(_upsert)
