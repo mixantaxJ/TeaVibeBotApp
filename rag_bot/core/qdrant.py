@@ -21,7 +21,7 @@ class QdrantManager:
         self.collection_name = "knowledge_base"
 
         # We initialize the model here, but keep in mind that fastembed downloads the model on first use.
-        self._embedding_model = TextEmbedding(model_name="intfloat/multilingual-e5-small")
+        self._embedding_model = TextEmbedding(model_name="intfloat/multilingual-e5-large")
 
         # Ensure collection exists
         try:
@@ -31,7 +31,7 @@ class QdrantManager:
             # multilingual-e5-small has 384 dimensions
             self._client.create_collection(
                 collection_name=self.collection_name,
-                vectors_config=VectorParams(size=384, distance=Distance.COSINE),
+                vectors_config=VectorParams(size=1024, distance=Distance.COSINE),
             )
 
     async def _embed_texts(self, texts: List[str]) -> List[List[float]]:
