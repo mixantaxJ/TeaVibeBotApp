@@ -16,9 +16,6 @@ from rag_bot.core.qdrant import qdrant_manager
 logging.basicConfig(level=logging.INFO)
 
 async def main():
-    # Initialize Qdrant
-    qdrant_manager.init()
-
     # Initialize bot and storage
     bot = Bot(token=settings.bot_token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
     redis = Redis.from_url(settings.redis_url)

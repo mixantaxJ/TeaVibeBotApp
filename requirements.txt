@@ -1,6 +1,6 @@
 aiogram>=3.22.0
 qdrant-client
-fastembed
+fastembed==0.5.1
 openai
 redis
 pydantic
